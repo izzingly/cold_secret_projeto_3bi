@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 public class FirstPersonMovement : MonoBehaviour
 {
 
@@ -18,6 +19,8 @@ public class FirstPersonMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
     private bool isMoving;
+    public float horizontalInput;
+    public float verticalInput;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +37,8 @@ public class FirstPersonMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = horizontalInput;
+        float z = verticalInput;
 
         Vector3 move = transform.right * x + transform.forward * z;
 
@@ -49,7 +52,16 @@ public class FirstPersonMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+    public void OnMoveEvent(InputAction.CallbackContext value)
+    {
+        Vector2 input = value.ReadValue<Vector2>();
+        horizontalInput = input.x;
+        verticalInput = input.y;
+    }
 
-    } 
+    
 }
+
+
 
