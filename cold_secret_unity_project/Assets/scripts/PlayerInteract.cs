@@ -35,6 +35,8 @@ public class PlayerInteract : MonoBehaviour
             if (currentInteractable.item.grabbable && userInteract)
             {
                 userInteract = false;
+                UIManager.instance.SetInteractCursor(true);
+
                 //RotateObject  
             }
         }
