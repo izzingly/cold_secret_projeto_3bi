@@ -28,37 +28,31 @@ public class PlayerInteract : MonoBehaviour
         CheckInteractables();
     }
      public void CheckInteractables()
+{
+    RaycastHit hit;
+    Vector3 rayOrigin = myCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.5f));
+
+    if (Physics.Raycast(rayOrigin, myCam.transform.forward, out hit, rayDistance))
     {
-        if (isViewing)
-        {
-            // if (currentInteractable.item.grabbable && Input.GetMouseButtonDown(0))
-            if (currentInteractable.item.grabbable && userInteract)
-            {
-                userInteract = false;
-                UIManager.instance.SetInteractCursor(true);
+        Interactables interactable = hit.collider.GetComponent<Interactables>();
 
-                //RotateObject  
-            }
+        if (interactable != null)
+        {
+            UIManager.instance.SetInteractCursor(true);
+            currentInteractable = interactable;
+            isViewing = true;
         }
-        RaycastHit hit;
-        Vector3 rayOrigin = myCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.5f));
-        if (Physics.Raycast(rayOrigin, myCam.transform.forward, out hit))
+        else
         {
-            Interactables interactable = hit.collider.GetComponent<Interactables>();
-            Interactables interacte = hit.collider.GetComponent<Interactables>();
-
-            if (userInteract)
-                {
-                    OnView.Invoke();
-                    currentInteractable = interactable;
-                    isViewing = true;
-                }
-            else
-            {
-                // Saiu de cima de um objeto
-                UIManager.instance.SetInteractCursor(false);
-            }
+            UIManager.instance.SetInteractCursor(false);
+            isViewing = false;
         }
     }
+    else
+    {
+        UIManager.instance.SetInteractCursor(false);
+        isViewing = false;
+    }
+}
 }
     

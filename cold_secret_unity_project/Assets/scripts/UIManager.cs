@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public GameObject interactCursor;
     public GameObject cursor;
+    public GameObject interactText;
     private void Awake()
     {
         instance = this;
@@ -31,5 +32,9 @@ public class UIManager : MonoBehaviour
     public void SetCursor(bool state)
     {
         cursor.SetActive(state);
+    }
+     public void SetInteractText(bool state)
+    {
+        interactText.SetActive(state);
     }
 }

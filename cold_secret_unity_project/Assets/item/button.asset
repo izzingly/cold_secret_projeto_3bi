@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: button
   m_EditorClassIdentifier: 
   grabbable: 0
+  switchable: 1

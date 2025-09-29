@@ -5,4 +5,5 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
    public bool grabbable;
+   public bool switchable;
 }
