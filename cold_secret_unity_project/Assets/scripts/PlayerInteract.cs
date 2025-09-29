@@ -36,6 +36,11 @@ public class PlayerInteract : MonoBehaviour
     {
         Interactables interactable = hit.collider.GetComponent<Interactables>();
 
+        if (hit.collider.CompareTag("button"))
+            {
+                UIManager.instance.SetInteractText(true);
+            }
+
         if (interactable != null)
         {
             UIManager.instance.SetInteractCursor(true);
@@ -45,6 +50,7 @@ public class PlayerInteract : MonoBehaviour
         else
         {
             UIManager.instance.SetInteractCursor(false);
+            UIManager.instance.SetInteractText(false);
             isViewing = false;
         }
     }
