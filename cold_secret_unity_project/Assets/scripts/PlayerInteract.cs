@@ -27,8 +27,17 @@ public class PlayerInteract : MonoBehaviour
     {
         CheckInteractables();
     }
-     public void CheckInteractables()
-{
+    
+    public void UserInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed) {
+            userInteract = true;
+        } else {
+            userInteract = false;
+        }
+    }
+    
+    public void CheckInteractables(){
     RaycastHit hit;
     Vector3 rayOrigin = myCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.5f));
 
@@ -40,6 +49,10 @@ public class PlayerInteract : MonoBehaviour
             {
                 UIManager.instance.SetInteractText(true);
             }
+        if (hit.collider.CompareTag("button") && Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            UIManager.instance.SetFusivel1(true);
+        }
 
         if (interactable != null)
         {

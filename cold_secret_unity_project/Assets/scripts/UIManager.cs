@@ -9,6 +9,12 @@ public class UIManager : MonoBehaviour
     public GameObject interactCursor;
     public GameObject cursor;
     public GameObject interactText;
+    public GameObject fusivel1;
+    public GameObject fusivel2;
+    public GameObject fusivel3;
+    public GameObject fusivel4;
+    public GameObject fusivel5;
+
     private void Awake()
     {
         instance = this;
@@ -36,5 +42,26 @@ public class UIManager : MonoBehaviour
      public void SetInteractText(bool state)
     {
         interactText.SetActive(state);
+    }
+    public void SetFusivel1(bool state)
+    {
+        fusivel1.SetActive(state);
+    }
+    public void SetFusivel2(bool state)
+    {
+        fusivel2.SetActive(state);
+    }
+    
+    public void SetFusivel3(bool state)
+    {
+        fusivel3.SetActive(state);
+    }
+    public void SetFusivel4(bool state)
+    {
+        fusivel4.SetActive(state);
+    }
+    public void SetFusivel5(bool state)
+    {
+        fusivel5.SetActive(state);
     }
 }
