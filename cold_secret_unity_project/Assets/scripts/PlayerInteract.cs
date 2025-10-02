@@ -16,6 +16,9 @@ public class PlayerInteract : MonoBehaviour
     private bool isViewing;
     private Interactables currentInteractable;
     public bool userInteract = false;
+    bool pressedOne = false;
+    int fusiveisAtivos = 0;
+    int fusiveisTotal = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,57 @@ public class PlayerInteract : MonoBehaviour
         if (hit.collider.CompareTag("button") && Keyboard.current.digit3Key.wasPressedThisFrame)
         {
             UIManager.instance.SetFusivel1(true);
+            fusiveisAtivos++;
+            if(fusiveisAtivos >= fusiveisTotal)
+                {
+                    Debug.Log("oi");
+                    this.GetComponent<Light>().enabled = true;
+                }
+        }
+         if (hit.collider.CompareTag("button") && Keyboard.current.digit4Key.wasPressedThisFrame)
+        {
+            UIManager.instance.SetFusivel2(true);
+            fusiveisAtivos++;
+            if(fusiveisAtivos >= fusiveisTotal)
+                {
+                    Debug.Log("oi");
+                    this.GetComponent<Light>().enabled = true;
+                }
+        }
+         if (hit.collider.CompareTag("button") && Keyboard.current.digit7Key.wasPressedThisFrame)
+        {
+            UIManager.instance.SetFusivel3(true);
+            fusiveisAtivos++;
+            if(fusiveisAtivos >= fusiveisTotal)
+                {
+                    Debug.Log("oi");
+                    this.GetComponent<Light>().enabled = true;
+                }
+        }
+         if (hit.collider.CompareTag("button") && Keyboard.current.digit9Key.wasPressedThisFrame)
+        {
+            UIManager.instance.SetFusivel4(true);
+            fusiveisAtivos++;
+            if(fusiveisAtivos >= fusiveisTotal)
+                {
+                    Debug.Log("oi");
+                    this.GetComponent<Light>().enabled = true;
+                }
+        }
+         if (hit.collider.CompareTag("button") && Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            pressedOne = true;
+        }
+        if (hit.collider.CompareTag("button") && Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            UIManager.instance.SetFusivel5(true);
+            pressedOne = false;
+            fusiveisAtivos++;
+            if(fusiveisAtivos >= fusiveisTotal)
+                {
+                    Debug.Log("oi");
+                    this.GetComponent<Light>().enabled = true;
+                }
         }
 
         if (interactable != null)
