@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     public GameObject timerText;
     public GameObject winText;
     public GameObject avisoText;
+    public GameObject objectiveText;
+    public GameObject warningPhone;
+    public GameObject phoneText;
     private void Awake()
     {
         instance = this;
@@ -77,5 +80,17 @@ public class UIManager : MonoBehaviour
     public void SetWin(bool state)
     {
         winText.SetActive(state);
+    }
+    public void SetObjText(bool state)
+    {
+        objectiveText.SetActive(state);
+    }
+    public void SetWarning(bool state)
+    {
+        warningPhone.SetActive(state);
+    }
+    public void SetPhoneText(bool state)
+    {
+        phoneText.SetActive(state);
     }
 }

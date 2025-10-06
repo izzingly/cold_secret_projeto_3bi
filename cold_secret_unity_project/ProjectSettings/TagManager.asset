@@ -7,6 +7,7 @@ TagManager:
   - button
   - readable
   - door
+  - phone
   layers:
   - Default
   - TransparentFX

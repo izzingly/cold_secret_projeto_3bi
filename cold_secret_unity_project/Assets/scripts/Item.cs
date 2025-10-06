@@ -7,4 +7,6 @@ public class Item : ScriptableObject
    public bool grabbable;
    public bool switchable;
     public bool readable;
+    public bool password;
+    public bool phone;
 }

@@ -92,6 +92,7 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetTimer(true);
                     UIManager.instance.SetAviso(true);
                     iniciarTimer = true;
+                    UIManager.instance.SetWarning(true);
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit4Key.wasPressedThisFrame)
@@ -106,6 +107,7 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetTimer(true);
                     UIManager.instance.SetAviso(true);
                     iniciarTimer = true;
+                    UIManager.instance.SetWarning(true);
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit7Key.wasPressedThisFrame)
@@ -120,6 +122,7 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetTimer(true);
                     UIManager.instance.SetAviso(true);
                     iniciarTimer = true;
+                    UIManager.instance.SetWarning(true);
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit9Key.wasPressedThisFrame)
@@ -134,6 +137,7 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetTimer(true);
                     UIManager.instance.SetAviso(true);
                     iniciarTimer = true;
+                    UIManager.instance.SetWarning(true);
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit1Key.wasPressedThisFrame)
@@ -153,6 +157,7 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetTimer(true);
                     UIManager.instance.SetAviso(true);
                     iniciarTimer = true;
+                    UIManager.instance.SetWarning(true);
                 }
         }
             if (interactable != null && hit.collider.CompareTag("readable") && Mouse.current.leftButton.wasPressedThisFrame)
@@ -166,9 +171,13 @@ public class PlayerInteract : MonoBehaviour
 
                 //UIManager.instance.SetExitRead(true);
             }
-            if (interactable != null && hit.collider.CompareTag("door") && Keyboard.current.digit0Key.wasPressedThisFrame)
+            if (interactable != null && hit.collider.CompareTag("door"))
             {
-                UIManager.instance.SetWin(true);
+                //UIManager.instance.SetWin(true);
+                UIManager.instance.SetObjText(true);
+            }
+            else{
+                UIManager.instance.SetObjText(false);
             }
 
             if (interactable != null)
@@ -182,6 +191,11 @@ public class PlayerInteract : MonoBehaviour
             UIManager.instance.SetInteractCursor(false);
             UIManager.instance.SetInteractText(false);
             isViewing = false;
+        }
+        if (interactable != null && hit.collider.CompareTag("phone"))
+        {
+            UIManager.instance.SetPhoneText(true);
+            
         }
     }
     else
