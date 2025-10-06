@@ -25,6 +25,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     private bool iniciarTimer = false;
+    private Vector3 originPosition;
+    private Quaternion originRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -153,8 +155,23 @@ public class PlayerInteract : MonoBehaviour
                     iniciarTimer = true;
                 }
         }
+            if (interactable != null && hit.collider.CompareTag("readable") && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                originPosition = interactable.transform.position;
+                originRotation = interactable.transform.rotation;
 
-        if (interactable != null)
+                StartCoroutine(MovingObject(interactable, objectReader.position));
+
+                interactable.transform.rotation = Quaternion.Euler(15, 0, 0);
+
+                //UIManager.instance.SetExitRead(true);
+            }
+            if (interactable != null && hit.collider.CompareTag("door") && Keyboard.current.digit0Key.wasPressedThisFrame)
+            {
+                UIManager.instance.SetWin(true);
+            }
+
+            if (interactable != null)
         {
             UIManager.instance.SetInteractCursor(true);
             currentInteractable = interactable;
@@ -172,6 +189,17 @@ public class PlayerInteract : MonoBehaviour
         UIManager.instance.SetInteractCursor(false);
         isViewing = false;
     }
-}
+        IEnumerator MovingObject(Interactables obj, Vector3 position)
+        {
+            float timer = 0;
+            while (timer < 1)
+            {
+                obj.transform.position = Vector3.Lerp(obj.transform.position, position, Time.deltaTime * 5);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            obj.transform.position = position;
+        }
+    }
 }
     

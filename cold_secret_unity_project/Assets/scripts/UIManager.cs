@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject fusivel4;
     public GameObject fusivel5;
     public GameObject timerText;
+    public GameObject winText;
     public GameObject avisoText;
     private void Awake()
     {
@@ -72,5 +73,9 @@ public class UIManager : MonoBehaviour
     public void SetAviso(bool state)
     {
         avisoText.SetActive(state);
+    }
+    public void SetWin(bool state)
+    {
+        winText.SetActive(state);
     }
 }
