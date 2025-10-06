@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject fusivel3;
     public GameObject fusivel4;
     public GameObject fusivel5;
-
+    public GameObject timerText;
+    public GameObject avisoText;
     private void Awake()
     {
         instance = this;
@@ -63,5 +64,13 @@ public class UIManager : MonoBehaviour
     public void SetFusivel5(bool state)
     {
         fusivel5.SetActive(state);
+    }
+    public void SetTimer(bool state)
+    {
+        timerText.SetActive(state);
+    }
+    public void SetAviso(bool state)
+    {
+        avisoText.SetActive(state);
     }
 }

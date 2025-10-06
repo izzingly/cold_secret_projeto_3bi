@@ -34,6 +34,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        UIManager.instance.SetAviso(false);
+        UIManager.instance.SetTimer(false);
     }
     
     public void ResumeGame()
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        UIManager.instance.SetAviso(true);
+        UIManager.instance.SetTimer(true);
     }
 
 }

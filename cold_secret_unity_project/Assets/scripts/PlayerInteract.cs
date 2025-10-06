@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class PlayerInteract : MonoBehaviour
     bool pressedOne = false;
     int fusiveisAtivos = 0;
     int fusiveisTotal = 5;
+    public Light luzAlvo;
+    public Light luzLanterna;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] float remainingTime;
+    private bool iniciarTimer = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +36,10 @@ public class PlayerInteract : MonoBehaviour
     void Update()
     {
         CheckInteractables();
+        if(iniciarTimer = true)
+        {
+            Timer();
+        }
     }
     
     public void UserInteract(InputAction.CallbackContext context)
@@ -38,6 +49,21 @@ public class PlayerInteract : MonoBehaviour
         } else {
             userInteract = false;
         }
+    }
+    public void Timer()
+    {
+        //UIManager.instance.SetTimer(true);
+        if (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+        }
+        else if (remainingTime < 0)
+        {
+            remainingTime = 0;
+        }
+        int minutes = Mathf.FloorToInt(remainingTime / 60);
+        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        timerText.text = string.Format("{00:00}:{1:00}", minutes, seconds);
     }
     
     public void CheckInteractables(){
@@ -59,7 +85,11 @@ public class PlayerInteract : MonoBehaviour
             if(fusiveisAtivos >= fusiveisTotal)
                 {
                     Debug.Log("oi");
-                    this.GetComponent<Light>().enabled = true;
+                    luzAlvo.enabled = true;
+                    luzLanterna.enabled = false;
+                    UIManager.instance.SetTimer(true);
+                    UIManager.instance.SetAviso(true);
+                    iniciarTimer = true;
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit4Key.wasPressedThisFrame)
@@ -69,7 +99,11 @@ public class PlayerInteract : MonoBehaviour
             if(fusiveisAtivos >= fusiveisTotal)
                 {
                     Debug.Log("oi");
-                    this.GetComponent<Light>().enabled = true;
+                    luzAlvo.enabled = true;
+                    luzLanterna.enabled = false;
+                    UIManager.instance.SetTimer(true);
+                    UIManager.instance.SetAviso(true);
+                    iniciarTimer = true;
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit7Key.wasPressedThisFrame)
@@ -79,7 +113,11 @@ public class PlayerInteract : MonoBehaviour
             if(fusiveisAtivos >= fusiveisTotal)
                 {
                     Debug.Log("oi");
-                    this.GetComponent<Light>().enabled = true;
+                    luzAlvo.enabled = true;
+                    luzLanterna.enabled = false;
+                    UIManager.instance.SetTimer(true);
+                    UIManager.instance.SetAviso(true);
+                    iniciarTimer = true;
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit9Key.wasPressedThisFrame)
@@ -89,7 +127,11 @@ public class PlayerInteract : MonoBehaviour
             if(fusiveisAtivos >= fusiveisTotal)
                 {
                     Debug.Log("oi");
-                    this.GetComponent<Light>().enabled = true;
+                    luzAlvo.enabled = true;
+                    luzLanterna.enabled = false;
+                    UIManager.instance.SetTimer(true);
+                    UIManager.instance.SetAviso(true);
+                    iniciarTimer = true;
                 }
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit1Key.wasPressedThisFrame)
@@ -104,7 +146,11 @@ public class PlayerInteract : MonoBehaviour
             if(fusiveisAtivos >= fusiveisTotal)
                 {
                     Debug.Log("oi");
-                    this.GetComponent<Light>().enabled = true;
+                    luzAlvo.enabled = true;
+                    luzLanterna.enabled = false;
+                    UIManager.instance.SetTimer(true);
+                    UIManager.instance.SetAviso(true);
+                    iniciarTimer = true;
                 }
         }
 
