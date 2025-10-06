@@ -195,7 +195,10 @@ public class PlayerInteract : MonoBehaviour
         if (interactable != null && hit.collider.CompareTag("phone"))
         {
             UIManager.instance.SetPhoneText(true);
-            
+        }
+        else
+        {
+            UIManager.instance.SetPhoneText(false);
         }
     }
     else

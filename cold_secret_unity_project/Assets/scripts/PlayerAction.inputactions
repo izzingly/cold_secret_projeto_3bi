@@ -168,6 +168,17 @@
                 },
                 {
                     "name": "",
+                    "id": "673a7d01-a68f-4a49-84ba-f3901e7723e1",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ec2f92ec-6b14-409e-9503-93fa53e6e4b5",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
