@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject objectiveText;
     public GameObject warningPhone;
     public GameObject phoneText;
+    public GameObject keypad;
     private void Awake()
     {
         instance = this;
@@ -92,5 +93,9 @@ public class UIManager : MonoBehaviour
     public void SetPhoneText(bool state)
     {
         phoneText.SetActive(state);
+    }
+    public void SetKeypad(bool state)
+    {
+        keypad.SetActive(state);
     }
 }

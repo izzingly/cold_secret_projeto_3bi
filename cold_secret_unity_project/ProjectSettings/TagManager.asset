@@ -8,6 +8,7 @@ TagManager:
   - readable
   - door
   - phone
+  - number
   layers:
   - Default
   - TransparentFX

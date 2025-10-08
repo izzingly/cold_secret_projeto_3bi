@@ -79,6 +79,7 @@ public class PlayerInteract : MonoBehaviour
         if (hit.collider.CompareTag("button"))
             {
                 UIManager.instance.SetInteractText(true);
+                UIManager.instance.SetKeypad(true);
             }
         if (hit.collider.CompareTag("button") && Keyboard.current.digit3Key.wasPressedThisFrame)
         {
@@ -94,6 +95,14 @@ public class PlayerInteract : MonoBehaviour
                     iniciarTimer = true;
                     UIManager.instance.SetWarning(true);
                 }
+        }
+        if (hit.collider.CompareTag("number"))
+        {
+            UIManager.instance.SetKeypad(true);
+        }
+        else
+        {
+            UIManager.instance.SetKeypad(false);
         }
          if (hit.collider.CompareTag("button") && Keyboard.current.digit4Key.wasPressedThisFrame)
         {
@@ -190,6 +199,7 @@ public class PlayerInteract : MonoBehaviour
         {
             UIManager.instance.SetInteractCursor(false);
             UIManager.instance.SetInteractText(false);
+            //UIManager.instance.SetKeypad(false);
             isViewing = false;
         }
         if (interactable != null && hit.collider.CompareTag("phone"))
