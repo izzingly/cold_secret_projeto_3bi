@@ -7,6 +7,9 @@ using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public bool isPaused;
+    public bool isTiming = false;
     public float rayDistance = 2f;
     public float rotateSpeed = 200;
     public Transform objectViewer;
@@ -32,24 +35,58 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         myCam = Camera.main;
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckInteractables();
-        if(iniciarTimer = true)
+        if (iniciarTimer = true)
         {
             Timer();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
-    
+
     public void UserInteract(InputAction.CallbackContext context)
     {
         if (context.performed) {
             userInteract = true;
         } else {
             userInteract = false;
+        }
+    }
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+        if (fusiveisAtivos >= fusiveisTotal)
+        {
+            UIManager.instance.SetAviso(false);
+            UIManager.instance.SetTimer(false);
+        }
+    }
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        if (fusiveisAtivos >= fusiveisTotal)
+        {
+            UIManager.instance.SetAviso(true);
+            UIManager.instance.SetTimer(true);
         }
     }
     public void Timer()

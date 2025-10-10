@@ -15376,6 +15376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76fec963ab4c9942a99f4c4df920755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 40858502}
+  isPaused: 0
+  isTiming: 0
   rayDistance: 2
   rotateSpeed: 200
   objectViewer: {fileID: 0}
