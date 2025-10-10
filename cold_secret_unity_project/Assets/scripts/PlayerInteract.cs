@@ -30,12 +30,17 @@ public class PlayerInteract : MonoBehaviour
     private bool iniciarTimer = false;
     private Vector3 originPosition;
     private Quaternion originRotation;
+    public MouseLook mouseLookScript;
 
     // Start is called before the first frame update
     void Start()
     {
         myCam = Camera.main;
         pauseMenu.SetActive(false);
+        if(mouseLookScript == null)
+        {
+        mouseLookScript = FindObjectOfType<MouseLook>();
+        }
     }
 
     // Update is called once per frame
@@ -117,6 +122,9 @@ public class PlayerInteract : MonoBehaviour
             {
                 UIManager.instance.SetInteractText(true);
                 UIManager.instance.SetKeypad(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                mouseLookScript.enabled = false;
             }
         if (hit.collider.CompareTag("button") && Keyboard.current.digit3Key.wasPressedThisFrame)
         {
