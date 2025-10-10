@@ -31,6 +31,7 @@ public class PlayerInteract : MonoBehaviour
     private Vector3 originPosition;
     private Quaternion originRotation;
     public MouseLook mouseLookScript;
+    bool isKeypadActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -122,9 +123,9 @@ public class PlayerInteract : MonoBehaviour
             {
                 UIManager.instance.SetInteractText(true);
                 UIManager.instance.SetKeypad(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                /*Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
-                mouseLookScript.enabled = false;
+                mouseLookScript.enabled = false;*/
             }
         if (hit.collider.CompareTag("button") && Keyboard.current.digit3Key.wasPressedThisFrame)
         {
@@ -141,14 +142,30 @@ public class PlayerInteract : MonoBehaviour
                     UIManager.instance.SetWarning(true);
                 }
         }
-        if (hit.collider.CompareTag("number"))
-        {
-            UIManager.instance.SetKeypad(true);
-        }
-        else
-        {
-            UIManager.instance.SetKeypad(false);
-        }
+            if (hit.collider.CompareTag("number"))
+            {
+                UIManager.instance.SetKeypad(true);
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                mouseLookScript.enabled = false;
+                isKeypadActive = true;
+                /*isso aqui faz o mouse ficar disponivel (igual no menu) e o keypad ser ativado quando o jogador mirar num objeto com tag "number",
+                os objetos com tag number são: telefone, fechadura eletronica do lado da porta*/
+            }
+            else
+            {
+                UIManager.instance.SetKeypad(false);
+            }
+         if(isKeypadActive = true && Keyboard.current.digit1Key.wasPressedThisFrame) 
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                mouseLookScript.enabled = true;
+                UIManager.instance.SetKeypad(false);
+                isKeypadActive = false;
+            /*isso aqui esta com erro, o intuito é ao jogador mirar no objeto com tag "number" e o keypad ativar, 
+             o keypad ser desativado e o mouse voltar ao normal depois de apertar um botão, ou o check do keypad*/
+            }   
          if (hit.collider.CompareTag("button") && Keyboard.current.digit4Key.wasPressedThisFrame)
         {
             UIManager.instance.SetFusivel2(true);
